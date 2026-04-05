@@ -23,6 +23,7 @@
                 }
             }
         }
+        
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,6 +36,100 @@
             background-position: center;
         }
         .glass-effect { backdrop-filter: blur(20px); }
+        /* Styling for the exact footer match */
+.custom-black-footer {
+    background-color: #010409; /* Deep black/dark blue background */
+    color: #ffffff;
+    padding: 60px 10%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-top-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #21262d;
+    margin-bottom: 40px;
+}
+
+.v-line { color: #30363d; font-size: 20px; }
+.footer-contact { color: #fff; text-decoration: none; font-size: 14px; }
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between; /* Horizontal layout */
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-col h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.col-grid {
+    display: flex;
+    gap: 60px; /* List bich ko horizontal gap */
+}
+
+.col-grid ul { list-style: none; padding: 0; margin: 0; }
+.col-grid ul li { margin-bottom: 15px; }
+.col-grid ul li a { 
+    color: #ffffff; 
+    text-decoration: none; 
+    font-size: 14px; 
+    opacity: 0.8; 
+    transition: 0.3s;
+}
+.col-grid ul li a:hover { opacity: 1; text-decoration: underline; }
+
+.social-grid i { margin-right: 8px; width: 16px; }
+
+/* Alphabet Styling */
+.footer-alphabet-section h3 {
+    font-size: 13px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.alphabet-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.alphabet-list span {
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alphabet-list span:hover {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.search-btn { border: none !important; font-size: 16px !important; }
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .col-grid { gap: 30px; }
+}
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 overflow-x-hidden">
@@ -220,7 +315,77 @@
                     <p class="text-gray-600 mb-8 text-center leading-relaxed">Veneers, crowns and cosmetic treatments</p>
                     <button onclick="openBookingModal()" class="w-full bg-primary text-white py-3 px-6 rounded-2xl font-semibold hover:bg-blue-700 transition-colors">Book Now</button>
              
-            
+            <footer class="custom-black-footer">
+    <div class="footer-top-row">
+        <span class="user-name">Bipin Devkota</span>
+        <span class="v-line">|</span>
+        <a href="tel:+9779801234567" class="footer-contact">
+            <i class="fas fa-phone-alt"></i> Contact me
+        </a>
+    </div>
+
+    <div class="footer-columns">
+        <div class="footer-col">
+            <h3>SEARCH BY</h3>
+            <div class="col-grid">
+                <ul>
+                    <li><a href="#">Skills</a></li>
+                    <li><a href="#">Location</a></li>
+                    <li><a href="#">Job</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">School</a></li>
+                    <li><a href="#">Company</a></li>
+                    <li><a href="#">Name</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>BOLD.PRO</h3>
+            <div class="col-grid">
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Accessibility</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Fraud Awareness</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>FOLLOW US</h3>
+            <div class="col-grid social-grid">
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-x-twitter"></i> X</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#"><i class="fab fa-youtube"></i> Youtube</a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-alphabet-section">
+        <h3>SEARCH PROFILES BY JOB TITLE</h3>
+        <div class="alphabet-list">
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
+            <span class="search-btn"><i class="fas fa-search"></i></span>
+        </div>
+    </div>
+</footer>
      
       
    
