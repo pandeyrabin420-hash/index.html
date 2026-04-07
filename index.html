@@ -500,7 +500,7 @@
         </div>
     </footer>
 
-    <script>
+      <script>
         function openBookingModal() {
             document.getElementById('bookingModal').classList.remove('hidden');
             document.getElementById('bookingModal').classList.add('flex');
@@ -520,24 +520,22 @@
             closeBookingModal();
             document.getElementById('bookingForm').reset();
         }
-        <script>
-    // Dental Information Toggle Function
-    function toggleInfo(button) {
-        const content = button.nextElementSibling;
-        const icon = button.querySelector('i');
 
-        content.classList.toggle('hidden');
-        
-        if (icon) {
-            icon.classList.toggle('rotate-180');
+        // ==================== DENTAL INFO FUNCTION ====================
+        function toggleInfo(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            content.classList.toggle('hidden');
+            
+            if (icon) {
+                icon.classList.toggle('rotate-180');
+            }
         }
-    }
-
-    // तपाईंको पुरानो functions (openBookingModal, closeBookingModal आदि) यहाँ राख्नुहोस्
-</script>
-
-        // Tailwind script already included via CDN
+        // ============================================================
     </script>
+</body>
+</html>
 </body>
 </html>
 
