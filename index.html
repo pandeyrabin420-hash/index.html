@@ -6,7 +6,6 @@
     <meta name="description" content="Healthy Muskan Dental Clinic - Best dental care in Jorpati, Kathmandu. Expert treatment for implants, braces, and root canal. Book now!">
     <title>Healthy Muskan Dental Clinic | Jorpati's #1 Dental Care</title>
     
-    <!-- SEO Meta Tags -->
     <meta name="keywords" content="dental clinic jorpati, dentist kathmandu, teeth whitening, dental implants, braces kathmandu">
     <meta property="og:title" content="Healthy Muskan Dental Clinic | Jorpati, Kathmandu">
     <meta property="og:description" content="Your Smile, Our Priority - Best dental care in Jorpati">
@@ -18,20 +17,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         * { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
         
         .hero-gradient {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%), 
+            background: linear-gradient(135deg, rgba(59,130,246,0.9) 0%, rgba(16,185,129,0.9) 100%),
                         url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=90&w=1920');
-            background-size: cover; background-position: center; background-attachment: fixed;
+            background-size: cover; background-position: center;
         }
         
         .glass-effect { 
-            background: rgba(255, 255, 255, 0.95); 
+            background: rgba(255,255,255,0.95); 
             backdrop-filter: blur(20px); 
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .service-card { 
@@ -48,25 +46,19 @@
             transform: translateY(-15px) scale(1.02); 
             box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
-        
-        /* Parallax */
-        .parallax { background-attachment: fixed; }
-        
-        /* Floating Elements */
+
         .floating { animation: float 6s ease-in-out infinite; }
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
         
-        /* Pulse Animation */
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+            0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.5); }
+            50% { box-shadow: 0 0 40px rgba(59,130,246,0.8); }
         }
         .pulse-glow { animation: pulse-glow 2s infinite; }
         
-        /* FAB Upgrades */
         .fab-container { 
             position: fixed; bottom: 25px; right: 25px; 
             display: flex; flex-direction: column; gap: 12px; z-index: 1000; 
@@ -76,205 +68,230 @@
             display: flex; align-items: center; justify-content: center; 
             color: white; font-size: 1.3rem; box-shadow: 0 8px 25px rgba(0,0,0,0.3); 
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-decoration: none;
         }
         .fab:hover { transform: scale(1.15) translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
         
-        /* Counter Animation */
-        .counter { font-size: 3rem; font-weight: 800; }
-        
-        /* Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .gallery-img {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .gallery-img:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-img img {
+            transition: transform 0.4s ease;
+        }
+
+        /* Mobile menu */
+        #mobileMenu { display: none; }
+        #mobileMenu.open { display: block; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-900">
 
-    <!-- 🔥 WhatsApp & Phone FABs -->
+    <!-- FABs -->
     <div class="fab-container">
         <a href="https://wa.me/9779841360374?text=Hi!%20I%20want%20to%20book%20an%20appointment%20at%20Healthy%20Muskan%20Dental%20Clinic" 
-           target="_blank" class="fab bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700">
+           target="_blank" class="fab" style="background: linear-gradient(to right, #22c55e, #16a34a)">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="tel:+9779841360374" class="fab bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700">
-            <i class="fa fa-phone"></i>
+        <a href="tel:+9779841360374" class="fab" style="background: linear-gradient(to right, #3b82f6, #2563eb)">
+            <i class="fas fa-phone"></i>
         </a>
-        <a href="#bookingModal" onclick="openBookingModal()" class="fab bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-            <i class="fa fa-calendar-check"></i>
+        <a href="#" onclick="openBookingModal(); return false;" class="fab" style="background: linear-gradient(to right, #a855f7, #ec4899)">
+            <i class="fas fa-calendar-check"></i>
         </a>
     </div>
 
-    <!-- 🚀 Navigation -->
-    <nav class="glass-effect sticky top-0 z-50 border-b border-blue-100/50">
+    <!-- Navigation -->
+    <nav class="glass-effect sticky top-0 z-50 border-b border-blue-100">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <div class="relative">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-green-500 rounded-2xl flex items-center justify-center shadow-2xl pulse-glow">
+                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl pulse-glow"
+                         style="background: linear-gradient(135deg, #2563eb, #22c55e)">
                         <i class="fa-solid fa-tooth text-3xl text-white"></i>
                     </div>
-                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-bold text-white animate-ping">★</div>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent leading-tight">Healthy Muskan</h1>
-                    <p class="text-xs uppercase tracking-widest bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent font-bold">Jorpati's #1 Dental Clinic</p>
+                    <h1 class="text-2xl font-black leading-tight" style="background: linear-gradient(to right, #1e3a8a, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Healthy Muskan</h1>
+                    <p class="text-xs uppercase tracking-widest font-bold" style="background: linear-gradient(to right, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Jorpati's #1 Dental Clinic</p>
                 </div>
             </div>
             
             <div class="hidden lg:flex items-center gap-10 text-sm font-semibold uppercase tracking-wider">
-                <a href="#home" class="text-blue-600 hover:text-blue-800 font-bold transition-all">Home</a>
-                <a href="#services" class="hover:text-blue-600 group transition-all relative">
-                    Services <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="#gallery" class="hover:text-blue-600 group transition-all relative">
-                    Gallery <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-                <a href="#about" class="hover:text-blue-600 group transition-all relative">
-                    About <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
+                <a href="#home" class="text-blue-600 font-bold transition-all">Home</a>
+                <a href="#services" class="hover:text-blue-600 transition-all">Services</a>
+                <a href="#gallery" class="hover:text-blue-600 transition-all">Gallery</a>
+                <a href="#about" class="hover:text-blue-600 transition-all">About</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button onclick="openBookingModal()" class="hidden md:inline-flex bg-gradient-to-r from-blue-600 to-green-500 text-white px-8 py-3 rounded-2xl font-black text-lg hover:from-blue-700 hover:to-green-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                <button onclick="openBookingModal()" class="hidden md:inline-flex text-white px-8 py-3 rounded-2xl font-black text-lg transition-all shadow-xl transform hover:-translate-y-1"
+                        style="background: linear-gradient(to right, #2563eb, #22c55e)">
                     <i class="fa fa-calendar-check mr-2"></i>BOOK NOW
                 </button>
-                <button class="lg:hidden p-2 rounded-xl bg-blue-600 text-white">
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl bg-blue-600 text-white">
                     <i class="fa fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden bg-white border-t border-blue-100 px-6 py-4">
+            <div class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-wider">
+                <a href="#home" onclick="toggleMobileMenu()" class="text-blue-600">Home</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="hover:text-blue-600">Services</a>
+                <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-blue-600">Gallery</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="hover:text-blue-600">About</a>
+                <button onclick="openBookingModal(); toggleMobileMenu();" class="text-white px-6 py-3 rounded-xl font-bold text-center"
+                        style="background: linear-gradient(to right, #2563eb, #22c55e)">Book Appointment</button>
+            </div>
+        </div>
     </nav>
 
-    <!-- 🎯 Hero Section with Parallax -->
+    <!-- Hero Section -->
     <section id="home" class="hero-gradient min-h-screen flex items-center text-white text-center px-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.2), transparent)"></div>
         <div class="max-w-5xl mx-auto relative z-10">
-            <!-- Trust Badge -->
-            <div class="inline-flex items-center bg-white/20 backdrop-blur-sm border border-white/30 px-6 py-2 rounded-full mb-8 animate-pulse">
+            <div class="inline-flex items-center px-6 py-2 rounded-full mb-8 animate-pulse"
+                 style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3)">
                 <i class="fa-solid fa-crown text-yellow-400 mr-2"></i>
                 <span class="font-bold text-lg">Jorpati's Most Trusted Dental Clinic</span>
             </div>
             
-            <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight bg-gradient-to-r from-white to-blue-200 bg-clip-text">
-                Your Perfect <span class="block text-transparent bg-gradient-to-r from-blue-400 via-white to-green-300 bg-clip-text">Smile</span>
+            <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight">
+                Your Perfect <span class="block text-blue-200">Smile</span>
                 <span class="text-4xl md:text-5xl block font-normal text-blue-200 mt-4">Starts Here</span>
             </h2>
             
-            <p class="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed opacity-90">
+            <p class="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
                 Pain-Free • Modern Technology • 15+ Years Experience<br>
                 <span class="text-blue-300 font-semibold">Gokarneshwor-5, Jorpati, Kathmandu</span>
             </p>
             
-            <div class="flex flex-col lg:flex-row gap-6 justify-center items-center">
-                <button onclick="openBookingModal()" class="group bg-white text-blue-800 px-12 py-6 rounded-3xl text-xl font-black hover:bg-blue-50 transition-all duration-500 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 hover:scale-105 flex items-center gap-3">
-                    <i class="fa fa-calendar-check text-2xl group-hover:animate-bounce"></i>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button onclick="openBookingModal()" class="bg-white text-blue-800 px-12 py-6 rounded-3xl text-xl font-black transition-all shadow-2xl transform hover:-translate-y-2 hover:scale-105 flex items-center gap-3">
+                    <i class="fa fa-calendar-check text-2xl"></i>
                     Book Appointment Now
                 </button>
-                <a href="#services" class="bg-white/20 backdrop-blur-sm border-2 border-white/50 px-12 py-6 rounded-3xl text-xl font-bold hover:bg-white hover:text-blue-900 transition-all duration-500 flex items-center gap-3">
+                <a href="#services" class="px-12 py-6 rounded-3xl text-xl font-bold transition-all flex items-center gap-3"
+                   style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5)">
                     <i class="fa fa-list-check"></i> View All Services
                 </a>
             </div>
             
             <!-- Stats Counter -->
             <div class="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto text-center">
-                <div class="reveal">
-                    <div class="counter text-4xl md:text-5xl font-black text-blue-300 mb-2" data-target="5000">0</div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-black text-blue-300 mb-2 counter" data-target="5000">0</div>
                     <div class="text-blue-100 font-semibold">Happy Patients</div>
                 </div>
-                <div class="reveal">
-                    <div class="counter text-4xl md:text-5xl font-black text-green-300 mb-2" data-target="15">0</div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-black text-green-300 mb-2 counter" data-target="15">0</div>
                     <div class="text-blue-100 font-semibold">Years Experience</div>
                 </div>
-                <div class="reveal">
-                    <div class="counter text-4xl md:text-5xl font-black text-yellow-300 mb-2" data-target="100">0</div>
-                    <div class="text-blue-100 font-semibold">Success Rate</div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-black text-yellow-300 mb-2 counter" data-target="100">0</div>
+                    <div class="text-blue-100 font-semibold">% Success Rate</div>
                 </div>
             </div>
         </div>
         
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-float"></div>
-        <div class="absolute bottom-20 right-20 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl animate-float" style="animation-delay: -2s;"></div>
+        <div class="absolute top-20 left-10 w-20 h-20 rounded-full blur-xl floating" style="background: rgba(255,255,255,0.1)"></div>
+        <div class="absolute bottom-20 right-20 w-32 h-32 rounded-full blur-2xl floating" style="background: rgba(59,130,246,0.2); animation-delay: -2s;"></div>
     </section>
 
-    <!-- 🦷 Services Section -->
-    <section id="services" class="py-28 max-w-7xl mx-auto px-6 relative">
+    <!-- Services Section -->
+    <section id="services" class="py-28 max-w-7xl mx-auto px-6">
         <div class="text-center mb-20">
-            <span class="inline-block bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent text-lg font-bold px-4 py-2 mb-6">
+            <span class="inline-block text-lg font-bold px-4 py-2 mb-6" style="background: linear-gradient(to right, #2563eb, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 <i class="fa fa-star mr-2"></i> Expert Dental Services
             </span>
             <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
-                Complete <span class="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">Smile</span> 
-                Makeover Solutions
+                Complete <span style="background: linear-gradient(to right, #2563eb, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Smile</span> Makeover
             </h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">Advanced treatments with 100% sterilization & modern technology</p>
         </div>
         
         <div id="services-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <!-- Services will be populated by JS -->
+            <!-- Populated by JS -->
         </div>
     </section>
 
-    <!-- 🖼️ Gallery Section -->
-    <section id="gallery" class="py-28 bg-gradient-to-br from-blue-50 via-white to-emerald-50">
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-28" style="background: linear-gradient(135deg, #eff6ff, #fff, #ecfdf5)">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
                 <h2 class="text-5xl font-black text-gray-900 mb-6">Our State-of-the-Art Facility</h2>
                 <p class="text-xl text-gray-600">Clean • Modern • Advanced Technology</p>
             </div>
             <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Gallery images populated by JS -->
+                <!-- Populated by JS -->
             </div>
         </div>
     </section>
 
-    <!-- 📍 About Section -->
+    <!-- About Section -->
     <section id="about" class="py-28 max-w-7xl mx-auto px-6">
         <div class="grid lg:grid-cols-2 gap-20 items-center">
             <div class="space-y-8 reveal">
                 <div>
-                    <h2 class="text-5xl lg:text-6xl font-black bg-gradient-to-r from-gray-900 to-blue-900 bg-clip-text leading-tight mb-6">
-                        15+ Years of <span class="text-transparent bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text">Trusted</span> Excellence
+                    <h2 class="text-5xl lg:text-6xl font-black leading-tight mb-6">
+                        15+ Years of <span style="background: linear-gradient(to right, #2563eb, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Trusted</span> Excellence
                     </h2>
                     <p class="text-xl text-gray-600 leading-relaxed">Jorpati's premier dental clinic offering pain-free treatments with cutting-edge technology and personalized care.</p>
                 </div>
                 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="group p-8 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-blue-100 hover:border-blue-200 transition-all hover:-translate-y-2">
+                    <div class="p-8 bg-white rounded-3xl shadow-2xl border border-blue-100 hover:border-blue-300 transition-all hover:-translate-y-2">
                         <div class="text-4xl font-black text-blue-600 mb-4 counter" data-target="5000">0</div>
-                        <div class="text-2xl font-bold text-gray-900 group-hover:text-blue-600">Happy Patients</div>
+                        <div class="text-2xl font-bold text-gray-900">Happy Patients</div>
                     </div>
-                    <div class="group p-8 bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-green-100 hover:border-green-200 transition-all hover:-translate-y-2">
+                    <div class="p-8 bg-white rounded-3xl shadow-2xl border border-green-100 hover:border-green-300 transition-all hover:-translate-y-2">
                         <div class="text-4xl font-black text-green-600 mb-4 counter" data-target="100">0</div>
-                        <div class="text-2xl font-bold text-gray-900 group-hover:text-green-600">Sterilization</div>
+                        <div class="text-2xl font-bold text-gray-900">% Sterilization</div>
                     </div>
                 </div>
             </div>
             
             <div class="reveal">
-                <div class="bg-white/90 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-gray-100/50">
+                <div class="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100">
                     <h3 class="text-3xl font-black text-blue-900 mb-8 flex items-center gap-3">
-                        <i class="fa-solid fa-map-marker-alt text-2xl text-green-500"></i>
+                        <i class="fa-solid fa-location-dot text-2xl text-green-500"></i>
                         Visit Us Today
                     </h3>
                     <div class="space-y-6 text-lg">
-                        <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-2xl hover:bg-blue-100 transition-all">
+                        <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-2xl">
                             <i class="fa-solid fa-location-dot text-2xl text-blue-600 mt-1"></i>
                             <div>
                                 <div class="font-bold text-gray-900">Address</div>
                                 <div class="font-semibold text-blue-900">Jorpati, Gokarneshwor-5<br>Kathmandu, Nepal</div>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 p-4 bg-green-50 rounded-2xl hover:bg-green-100 transition-all">
+                        <div class="flex items-start gap-4 p-4 bg-green-50 rounded-2xl">
                             <i class="fa-solid fa-phone text-2xl text-green-600 mt-1"></i>
                             <div>
                                 <div class="font-bold text-gray-900">Call Now</div>
-                                <div class="font-semibold text-2xl text-green-600 hover:text-green-700 transition-all">+977 9841360374</div>
+                                <a href="tel:+9779841360374" class="font-semibold text-2xl text-green-600 hover:text-green-700">+977 9841360374</a>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 p-4 bg-orange-50 rounded-2xl hover:bg-orange-100 transition-all">
+                        <div class="flex items-start gap-4 p-4 bg-orange-50 rounded-2xl">
                             <i class="fa-solid fa-clock text-2xl text-orange-500 mt-1"></i>
                             <div>
                                 <div class="font-bold text-gray-900">Open Hours</div>
-                                <div class="font-semibold">Sun-Fri: 08AM - 7PM<br>Sat: Emergency Only</div>
+                                <div class="font-semibold">Sun–Fri: 08AM – 7PM<br>Sat: Emergency Only</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-purple-50 rounded-2xl">
+                            <i class="fab fa-whatsapp text-2xl text-purple-600 mt-1"></i>
+                            <div>
+                                <div class="font-bold text-gray-900">WhatsApp</div>
+                                <a href="https://wa.me/9779841360374" target="_blank" class="font-semibold text-purple-600 hover:text-purple-800">Message Us on WhatsApp</a>
                             </div>
                         </div>
                     </div>
@@ -283,49 +300,53 @@
         </div>
     </section>
 
-    <!-- 🎁 Booking Modal - UPGRADED -->
-    <div id="bookingModal" class="hidden fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-6 backdrop-blur-xl">
-        <div class="bg-white/95 backdrop-blur-2xl rounded-3xl max-w-lg w-full mx-4 p-10 shadow-3xl relative animate-in zoom-in-95 duration-500 border border-white/20 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-gray-500 hover:text-gray-900 text-3xl font-bold transition-all hover:scale-110">×</button>
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-6" style="background: rgba(0,0,0,0.85)">
+        <div class="bg-white rounded-3xl max-w-lg w-full mx-4 p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-900 text-3xl font-bold transition-all">×</button>
             
             <div class="text-center mb-8">
-                <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-500 rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl">
+                <div class="w-20 h-20 rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl"
+                     style="background: linear-gradient(135deg, #22c55e, #3b82f6)">
                     <i class="fa fa-calendar-check text-3xl text-white"></i>
                 </div>
                 <h3 class="text-3xl font-black text-gray-900 mb-2">Book Your Appointment</h3>
                 <p class="text-lg text-gray-600">Get 10% OFF your first visit!</p>
             </div>
             
-            <form action="https://formsubmit.co/healthymuskan2010@gmail.com" method="POST" class="space-y-6">
-                <!-- Hidden fields for better tracking -->
+            <!-- FIX: Removed PHP date(), replaced with JS in script below -->
+            <form id="bookingForm" action="https://formsubmit.co/healthymuskan2010@gmail.com" method="POST" class="space-y-6">
                 <input type="hidden" name="_subject" value="New Appointment Booking - Healthy Muskan Dental Clinic">
                 <input type="hidden" name="_next" value="https://healthymuskan.com/thankyou.html">
                 <input type="hidden" name="source" value="Website Booking">
                 
                 <input type="text" name="name" placeholder="Full Name *" required 
-                       class="w-full p-5 bg-gradient-to-r from-gray-50 to-blue-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-blue-500 focus:outline-none transition-all hover:border-blue-300">
+                       class="w-full p-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-blue-500 focus:outline-none transition-all">
                 
                 <input type="tel" name="phone" placeholder="Phone Number *" required 
-                       class="w-full p-5 bg-gradient-to-r from-gray-50 to-green-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-green-500 focus:outline-none transition-all hover:border-green-300">
+                       class="w-full p-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-green-500 focus:outline-none transition-all">
                 
-                <select name="service" class="w-full p-5 bg-gradient-to-r from-gray-50 to-purple-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-purple-500 focus:outline-none transition-all hover:border-purple-300" required>
-                    <option value="">Select Service</option>
+                <select name="service" required
+                        class="w-full p-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-purple-500 focus:outline-none transition-all">
+                    <option value="">Select Service *</option>
                     <option>General Checkup (NPR 500)</option>
                     <option>Root Canal Treatment</option>
                     <option>Laser Teeth Whitening</option>
                     <option>Dental Implants</option>
-                    <option>Braces & Orthodontics</option>
+                    <option>Braces &amp; Orthodontics</option>
                     <option>Child Dentistry</option>
                     <option>Emergency Care</option>
                 </select>
                 
-                <input type="date" name="preferred_date" required min="<?php echo date('Y-m-d'); ?>" 
-                       class="w-full p-5 bg-gradient-to-r from-gray-50 to-orange-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-orange-500 focus:outline-none transition-all hover:border-orange-300">
+                <!-- FIX: id added so JS can set min date -->
+                <input type="date" id="preferredDate" name="preferred_date" required 
+                       class="w-full p-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-lg focus:border-orange-500 focus:outline-none transition-all">
                 
                 <textarea name="message" placeholder="Any specific concerns or preferred time?" rows="3" 
-                          class="w-full p-5 bg-gradient-to-r from-gray-50 to-pink-50 border-2 border-gray-200 rounded-2xl focus:border-pink-500 focus:outline-none transition-all resize-vertical"></textarea>
+                          class="w-full p-5 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-pink-500 focus:outline-none transition-all resize-vertical"></textarea>
                 
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-green-500 text-white font-black py-6 rounded-2xl text-xl shadow-2xl hover:shadow-3xl hover:from-blue-700 hover:to-green-600 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3">
+                <button type="submit" class="w-full text-white font-black py-6 rounded-2xl text-xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3"
+                        style="background: linear-gradient(to right, #2563eb, #22c55e)">
                     <i class="fa fa-paper-plane text-xl"></i>
                     Confirm My Booking
                 </button>
@@ -337,66 +358,226 @@
         </div>
     </div>
 
-    <!-- 🎨 Footer -->
-    <footer class="bg-gradient-to-t from-gray-900 via-gray-800 to-transparent pt-24 pb-12 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 to-transparent"></div>
+    <!-- Footer -->
+    <footer class="pt-24 pb-12 relative overflow-hidden" style="background: linear-gradient(to top, #111827, #1f2937)">
         <div class="max-w-7xl mx-auto px-6 relative">
             <div class="text-center mb-12">
-                <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-green-500 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-3xl">
+                <div class="w-24 h-24 rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-2xl"
+                     style="background: linear-gradient(135deg, #3b82f6, #22c55e)">
                     <i class="fa-solid fa-tooth text-4xl text-white"></i>
                 </div>
-                <h2 class="text-4xl font-black text-white mb-4 bg-gradient-to-r from-white to-blue-200 bg-clip-text">Healthy Muskan Dental Clinic</h2>
+                <h2 class="text-4xl font-black text-white mb-4">Healthy Muskan Dental Clinic</h2>
                 <p class="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">Transforming smiles since 2010 | Jorpati's Dental Excellence</p>
+                
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="https://wa.me/9779841360374" target="_blank"
+                       class="w-12 h-12 rounded-full flex items-center justify-center text-white transition-all hover:-translate-y-1"
+                       style="background: #22c55e">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="tel:+9779841360374"
+                       class="w-12 h-12 rounded-full flex items-center justify-center text-white transition-all hover:-translate-y-1"
+                       style="background: #3b82f6">
+                        <i class="fas fa-phone text-xl"></i>
+                    </a>
+                </div>
             </div>
             
-            <div class="border-t border-white/20 pt-12 text-center text-sm text-gray-400">
-                <p>&copy; 2026 Healthy Muskan Dental Clinic. All Rights Reserved | Designed for Smiles ✨</p>
+            <div class="border-t pt-8 text-center text-sm text-gray-400" style="border-color: rgba(255,255,255,0.1)">
+                <p>&copy; 2026 Healthy Muskan Dental Clinic. All Rights Reserved ✨</p>
             </div>
         </div>
     </footer>
 
-    <!-- 🔥 ADVANCED JAVASCRIPT -->
     <script>
-        // 1. 🔥 DYNAMIC SERVICES DATA (Enhanced)
+        // =============================================
+        // SERVICES DATA (Fixed icon names for FA6)
+        // =============================================
         const services = [
             { 
                 title: "General Dentistry", 
                 icon: "fa-tooth", 
                 color: "from-blue-500 to-blue-600",
+                colorHex: "#3b82f6",
                 desc: "Routine check-ups, cleanings & preventive care with digital X-rays",
                 price: "From NPR 500"
             },
             { 
                 title: "Painless Root Canal", 
                 icon: "fa-syringe", 
-                color: "from-red-500 to-pink-600", 
-                desc: "Advanced rotary endodontics - single visit treatment",
+                color: "from-red-500 to-pink-600",
+                colorHex: "#ef4444",
+                desc: "Advanced rotary endodontics — single visit treatment",
                 price: "NPR 8,000"
             },
             { 
-                title: "Laser Teeth Whitening", 
-                icon: "fa-sparkles", 
-                color: "from-yellow-400 to-orange-500", 
-                desc: "Professional whitening - 8 shades brighter in 1 hour",
+                title: "Teeth Whitening", 
+                icon: "fa-star",
+                color: "from-yellow-400 to-orange-500",
+                colorHex: "#f59e0b",
+                desc: "Professional whitening — 8 shades brighter in 1 hour",
                 price: "NPR 12,000"
             },
             { 
                 title: "Dental Implants", 
-                icon: "fa-prosthesis", 
-                color: "from-emerald-500 to-teal-600", 
-                desc: "Permanent teeth replacement - lifetime warranty",
+                icon: "fa-screwdriver",
+                color: "from-emerald-500 to-teal-600",
+                colorHex: "#10b981",
+                desc: "Permanent teeth replacement — lifetime warranty",
                 price: "NPR 45,000"
             },
             { 
-                title: "Invisible Braces", 
+                title: "Braces & Aligners", 
                 icon: "fa-teeth-open", 
-                color: "from-purple-500 to-violet-600", 
-                desc: "Clear aligners for perfect smile alignment",
+                color: "from-purple-500 to-violet-600",
+                colorHex: "#a855f7",
+                desc: "Clear aligners & metal braces for perfect smile alignment",
                 price: "From NPR 65,000"
             },
             { 
                 title: "Kids Dentistry", 
-                icon: "fa-child-reaching", 
-                color: "from-pink-500 to-rose-500", 
-                desc: "Fun & gentle care for
-                               
+                icon: "fa-child",
+                color: "from-pink-500 to-rose-500",
+                colorHex: "#ec4899",
+                desc: "Fun & gentle care for children in a comfortable environment",
+                price: "From NPR 500"
+            }
+        ];
+
+        function renderServices() {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = services.map(s => `
+                <div class="service-card bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 text-white text-2xl shadow-lg"
+                         style="background: linear-gradient(135deg, ${s.colorHex}, ${s.colorHex}cc)">
+                        <i class="fas ${s.icon}"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-3">${s.title}</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">${s.desc}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-lg" style="color: ${s.colorHex}">${s.price}</span>
+                        <button onclick="openBookingModal()" 
+                                class="px-6 py-3 rounded-xl text-white font-bold text-sm transition-all hover:opacity-90 hover:-translate-y-0.5 transform"
+                                style="background: linear-gradient(to right, ${s.colorHex}, ${s.colorHex}bb)">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // =============================================
+        // GALLERY DATA
+        // =============================================
+        const galleryImages = [
+            { url: "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=400&q=80", alt: "Dental Chair" },
+            { url: "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=400&q=80", alt: "Dental Equipment" },
+            { url: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&q=80", alt: "Clinic Interior" },
+            { url: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80", alt: "Doctor" },
+            { url: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&q=80", alt: "Treatment" },
+            { url: "https://images.unsplash.com/photo-1601132359864-c974e79890ac?w=400&q=80", alt: "Dental Tools" },
+            { url: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&q=80", alt: "Teeth Whitening" },
+            { url: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80", alt: "Happy Patient" },
+        ];
+
+        function renderGallery() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = galleryImages.map(img => `
+                <div class="gallery-img rounded-2xl overflow-hidden shadow-lg aspect-square cursor-pointer">
+                    <img src="${img.url}" alt="${img.alt}" class="w-full h-full object-cover"
+                         onerror="this.parentElement.style.display='none'">
+                </div>
+            `).join('');
+        }
+
+        // =============================================
+        // COUNTER ANIMATION
+        // =============================================
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current).toLocaleString();
+                    if (target === 100) counter.textContent = Math.floor(current) + '%';
+                    if (target === 5000) counter.textContent = Math.floor(current).toLocaleString() + '+';
+                }, 16);
+            });
+        }
+
+        // =============================================
+        // SCROLL REVEAL
+        // =============================================
+        function setupScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // =============================================
+        // BOOKING MODAL
+        // =============================================
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // FIX: Set min date using JavaScript instead of PHP
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('preferredDate').min = today;
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on outside click
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeBookingModal();
+        });
+
+        // =============================================
+        // MOBILE MENU
+        // =============================================
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+
+        // =============================================
+        // COUNTER TRIGGER ON SCROLL
+        // =============================================
+        let countersStarted = false;
+        window.addEventListener('scroll', () => {
+            if (!countersStarted && window.scrollY > 200) {
+                countersStarted = true;
+                animateCounters();
+            }
+        });
+
+        // =============================================
+        // INIT
+        // =============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServices();
+            renderGallery();
+            setupScrollReveal();
+            // Start counters if hero already visible
+            setTimeout(animateCounters, 500);
+        });
+    </script>
+</body>
+</html>
