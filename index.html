@@ -124,6 +124,35 @@
         #mobileMenu { display: none; }
         #mobileMenu.open { display: block; }
 
+        /* ===== LIGHTBOX ===== */
+        #lightbox {
+            display: none;
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.95);
+            align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 92vw; max-height: 80vh;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+            object-fit: contain;
+            transition: opacity 0.25s ease;
+        }
+        .lb-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.15); border: none; color: white;
+            font-size: 2rem; width: 56px; height: 56px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(8px); transition: background 0.2s;
+        }
+        .lb-btn:hover { background: rgba(255,255,255,0.3); }
+        #lb-prev { left: 16px; }
+        #lb-next { right: 16px; }
+        .gallery-img { cursor: pointer; }
+        .gallery-img:hover img { transform: scale(1.08); }
+
         /* ===== REVIEWS SECTION ===== */
         .review-card {
             background: white;
@@ -173,6 +202,11 @@
             transition: color 0.15s, transform 0.15s;
         }
         .star-select-btn.active, .star-select-btn:hover { color: #f59e0b; transform: scale(1.2); }
+
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-900">
@@ -260,18 +294,7 @@
                 <span class="text-blue-300 font-semibold">Gokarneshwor-5, Jorpati, Kathmandu</span>
             </p>
             
-            <!-- Google Rating Badge -->
-            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl mb-8" 
-                 style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3)">
-                <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" alt="Google" class="w-6 h-6">
-                <div class="flex gap-1">
-                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                </div>
-                <span class="font-bold text-white text-lg">4.6 / 5</span>
-                <span class="text-blue-200">(5 Google Reviews)</span>
-            </div>
+
 
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <button onclick="openBookingModal()" class="bg-white text-blue-800 px-12 py-6 rounded-3xl text-xl font-black transition-all shadow-2xl transform hover:-translate-y-2 hover:scale-105 flex items-center gap-3">
@@ -331,8 +354,19 @@
                 <p class="text-xl text-gray-600">Real experiences from real people who trust us with their smiles</p>
             </div>
 
-            <!-- Overall Rating Summary -->
-            <div class="bg-white rounded-3xl shadow-2xl p-10 mb-16 reveal" style="border: 1px solid #e0f2fe;">
+            <!-- Reviews Toggle Button -->
+            <div class="text-center mb-8 reveal">
+                <button onclick="toggleRatingSummary()" id="showRatingBtn"
+                        class="inline-flex items-center gap-3 px-10 py-4 rounded-2xl text-white font-black text-lg shadow-xl hover:-translate-y-1 transition-all"
+                        style="background: linear-gradient(to right, #f59e0b, #22c55e)">
+                    <i class="fas fa-star"></i> Show Ratings & Reviews
+                    <i class="fas fa-chevron-down" id="ratingChevron"></i>
+                </button>
+            </div>
+
+            <!-- Overall Rating Summary (hidden by default) -->
+            <div id="ratingSummarySection" style="display:none;" class="mb-16">
+            <div class="bg-white rounded-3xl shadow-2xl p-10" style="border: 1px solid #e0f2fe;">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <!-- Big Rating Number -->
                     <div class="text-center">
@@ -391,6 +425,8 @@
                     </div>
                 </div>
             </div>
+
+            </div><!-- /ratingSummarySection -->
 
             <!-- Review Cards -->
             <div id="reviews-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"></div>
@@ -582,6 +618,23 @@
         </div>
     </section>
 
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <button class="lb-btn" id="lb-prev" onclick="lbNav(-1)">&#8249;</button>
+        <img id="lb-img" src="" alt="Gallery">
+        <button class="lb-btn" id="lb-next" onclick="lbNav(1)">&#8250;</button>
+        <!-- Caption -->
+        <div style="color:rgba(255,255,255,0.7); margin-top:16px; font-size:0.95rem;" id="lb-caption"></div>
+        <!-- Dots -->
+        <div id="lb-dots" style="display:flex; gap:8px; margin-top:12px;"></div>
+        <!-- Close -->
+        <button onclick="closeLightbox()" 
+                style="position:absolute; top:20px; right:24px; background:rgba(255,255,255,0.15); border:none; color:white; font-size:1.8rem; width:48px; height:48px; border-radius:50%; cursor:pointer; backdrop-filter:blur(8px);">×</button>
+        <!-- Swipe hint -->
+        <div style="position:absolute; bottom:20px; color:rgba(255,255,255,0.4); font-size:0.8rem;">Swipe or use arrow keys to navigate</div>
+    </div>
+
     <!-- Booking Modal -->
     <div id="bookingModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center p-6" style="background: rgba(0,0,0,0.85)">
         <div class="bg-white rounded-3xl max-w-lg w-full mx-4 p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto">
@@ -685,12 +738,12 @@
 
         // ===== SERVICES DATA =====
         const services = [
-            { title: "General Dentistry", icon: "fa-tooth", colorHex: "#3b82f6", desc: "Routine check-ups, cleanings & preventive care with digital X-rays", price: "From NPR 500" },
-            { title: "Painless Root Canal", icon: "fa-syringe", colorHex: "#ef4444", desc: "Advanced rotary endodontics — single visit treatment", price: "NPR 8,000" },
-            { title: "Teeth Whitening", icon: "fa-star", colorHex: "#f59e0b", desc: "Professional whitening — 8 shades brighter in 1 hour", price: "NPR 12,000" },
-            { title: "Dental Implants", icon: "fa-screwdriver", colorHex: "#10b981", desc: "Permanent teeth replacement — lifetime warranty", price: "NPR 45,000" },
-            { title: "Braces & Aligners", icon: "fa-teeth-open", colorHex: "#a855f7", desc: "Clear aligners & metal braces for perfect smile alignment", price: "From NPR 65,000" },
-            { title: "Kids Dentistry", icon: "fa-child", colorHex: "#ec4899", desc: "Fun & gentle care for children in a comfortable environment", price: "From NPR 500" }
+            { title: "General Dentistry", icon: "fa-tooth", colorHex: "#3b82f6", desc: "Routine check-ups, cleanings & preventive care with digital X-rays", priceFrom: "Rs. 500" },
+            { title: "Painless Root Canal", icon: "fa-syringe", colorHex: "#ef4444", desc: "Advanced rotary endodontics — single visit treatment", priceFrom: "Rs. 5,000" },
+            { title: "Teeth Whitening", icon: "fa-star", colorHex: "#f59e0b", desc: "Professional laser whitening — brighter smile in 1 hour", priceFrom: "Rs. 8,000" },
+            { title: "Dental Implants", icon: "fa-screwdriver", colorHex: "#10b981", desc: "Permanent teeth replacement with titanium implants", priceFrom: "Rs. 60,000" },
+            { title: "Braces & Aligners", icon: "fa-teeth-open", colorHex: "#a855f7", desc: "Metal braces & clear aligners for perfect alignment", priceFrom: "Rs. 35,000" },
+            { title: "Kids Dentistry", icon: "fa-child", colorHex: "#ec4899", desc: "Fun & gentle care for children in a comfortable environment", priceFrom: "Rs. 300" }
         ];
 
         function renderServices() {
@@ -701,12 +754,18 @@
                         <i class="fas ${s.icon}"></i>
                     </div>
                     <h3 class="text-2xl font-black text-gray-900 mb-3">${s.title}</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">${s.desc}</p>
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-lg" style="color: ${s.colorHex}">${s.price}</span>
-                        <button onclick="openBookingModal()" class="px-6 py-3 rounded-xl text-white font-bold text-sm hover:opacity-90 hover:-translate-y-0.5 transform transition-all"
-                                style="background: linear-gradient(to right, ${s.colorHex}, ${s.colorHex}bb)">Book Now</button>
+                    <p class="text-gray-600 mb-5 leading-relaxed">${s.desc}</p>
+                    <div class="mb-5 p-3 rounded-2xl" style="background:${s.colorHex}10; border:1px solid ${s.colorHex}30">
+                        <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:${s.colorHex}99">Starting From</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm text-gray-400 font-semibold">From</span>
+                            <span class="font-black text-xl" style="color:${s.colorHex}">${s.priceFrom}</span>
+                        </div>
                     </div>
+                    <button onclick="openBookingModal()" class="w-full px-6 py-3 rounded-xl text-white font-bold text-sm hover:opacity-90 hover:-translate-y-0.5 transform transition-all"
+                            style="background: linear-gradient(to right, ${s.colorHex}, ${s.colorHex}bb)">
+                        <i class="fas fa-calendar-check mr-2"></i>Book Now
+                    </button>
                 </div>
             `).join('');
         }
@@ -842,13 +901,66 @@
         ];
 
         function renderGallery() {
-            document.getElementById('gallery-grid').innerHTML = galleryImages.map(img => `
-                <div class="gallery-img rounded-2xl overflow-hidden shadow-lg aspect-square cursor-pointer">
+            document.getElementById('gallery-grid').innerHTML = galleryImages.map((img, i) => `
+                <div class="gallery-img rounded-2xl overflow-hidden shadow-lg aspect-square cursor-pointer relative group"
+                     onclick="openLightbox(${i})">
                     <img src="${img.url}" alt="${img.alt}" class="w-full h-full object-cover"
                          onerror="this.parentElement.style.display='none'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg"></i>
+                    </div>
                 </div>
             `).join('');
         }
+
+        // ===== LIGHTBOX FUNCTIONS =====
+        let lbIndex = 0;
+        function openLightbox(i) {
+            lbIndex = i;
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            updateLightbox();
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function lbNav(dir) {
+            lbIndex = (lbIndex + dir + galleryImages.length) % galleryImages.length;
+            updateLightbox();
+        }
+        function updateLightbox() {
+            const img = document.getElementById('lb-img');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = galleryImages[lbIndex].url.replace('w=400', 'w=1200');
+                img.alt = galleryImages[lbIndex].alt;
+                img.style.opacity = '1';
+            }, 120);
+            document.getElementById('lb-caption').textContent = galleryImages[lbIndex].alt + ' — ' + (lbIndex+1) + ' / ' + galleryImages.length;
+            // Dots
+            document.getElementById('lb-dots').innerHTML = galleryImages.map((_, i) =>
+                `<div style="width:8px;height:8px;border-radius:50%;background:${i===lbIndex?'white':'rgba(255,255,255,0.35)'}"></div>`
+            ).join('');
+        }
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lightbox').classList.contains('open')) return;
+            if (e.key === 'ArrowRight') lbNav(1);
+            if (e.key === 'ArrowLeft') lbNav(-1);
+            if (e.key === 'Escape') closeLightbox();
+        });
+        // Swipe support
+        let touchStartX = 0;
+        document.getElementById('lightbox').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+        document.getElementById('lightbox').addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) lbNav(diff > 0 ? 1 : -1);
+        });
+        // Click backdrop to close
+        document.getElementById('lightbox').addEventListener('click', e => {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        });
 
         // ===== COUNTER ANIMATION =====
         function animateCounters() {
@@ -903,6 +1015,25 @@
         window.addEventListener('scroll', () => {
             if (!countersStarted && window.scrollY > 200) { countersStarted = true; animateCounters(); }
         });
+
+        // ===== RATING TOGGLE =====
+        let ratingVisible = false;
+        function toggleRatingSummary() {
+            ratingVisible = !ratingVisible;
+            const section = document.getElementById('ratingSummarySection');
+            const chevron = document.getElementById('ratingChevron');
+            const btn = document.getElementById('showRatingBtn');
+            if (ratingVisible) {
+                section.style.display = 'block';
+                section.style.animation = 'fadeSlideDown 0.4s ease';
+                chevron.style.transform = 'rotate(180deg)';
+                btn.innerHTML = '<i class="fas fa-star"></i> Hide Ratings & Reviews <i class="fas fa-chevron-up" id="ratingChevron" style="transform:rotate(180deg)"></i>';
+                setTimeout(animateRatingBars, 300);
+            } else {
+                section.style.display = 'none';
+                btn.innerHTML = '<i class="fas fa-star"></i> Show Ratings & Reviews <i class="fas fa-chevron-down" id="ratingChevron"></i>';
+            }
+        }
 
         // ===== INIT =====
         document.addEventListener('DOMContentLoaded', () => {
